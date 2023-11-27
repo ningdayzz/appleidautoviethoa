@@ -1,0 +1,43 @@
+{include file="user/header"}
+
+<title>Hồ sơ nhiệm vụ</title>
+<div class="container" style="padding-top:50px;">
+    <div class="col-md-12 center-block" style="float: none;">
+        <h1>Hồ sơ nhiệm vụ</h1>
+        <div class="table-responsive" style="margin-top: 13px;">
+            <table class="table table-striped table-nowrap">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên tài khoản</th>
+                    <th>Kiểu</th>
+                    <th>Tình trạngtrạng</th>
+                    <th>Đăng nhập</th>
+                    <th>IP</th>
+                    <th>Thời gian</th>
+                </tr>
+                </thead>
+                <tbody>
+                {if $unlockRecords->isEmpty()}
+                <tr>
+                    <td class="text-center" colspan="7">Không có dữ liệu</td>
+                </tr>
+                {/if}
+                {volist name="unlockRecords" id="record"}
+                <tr>
+                    <td>{$record['id']}</td>
+                    <td>{$record['username']}</td>
+                    <td>{$record['type']}</td>
+                    <td>{$record['status']?"Thành công":"Thất bại"}</td>
+                    <td>{$record['message']}</td>
+                    <td>{$record['ip']}</td>
+                    <td>{$record['time']}</td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            {$unlockRecords|raw}
+        </div>
+    </div>
+</div>
+{include file="user/footer"}
